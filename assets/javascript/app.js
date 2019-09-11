@@ -1,5 +1,5 @@
 // Golbal variables//
-var timer = 3;
+var timer = 30;
 var interValId;
 var questions = 0;
 var score =0; 
@@ -18,9 +18,17 @@ var triviaQuestion = [
     },
 ];
 
+var correct=[
+    './assets/images/yup.gif'
+];
+var incorrect=[
+    './assets/images/no.gif',
+    './assets/images/wrong.gif'
+];
+
 function questionUp(){
     var question = triviaQuestion[questions].question;
-    timer = 3;
+    timer = 30;
     interValId = setInterval(countDown, 1000);
         $("#time").html("Timer: " +timer);
     $("#game").html("<h2>" + question + "</h2>");
@@ -60,7 +68,9 @@ function countDown(){
 function stopTime(){
     clearInterval(interValId);
     wrong++;
-    newQuestion();
+    splash('wrong');
+    setTimeout(newQuestion , 3*1000);
+    
 };
 
 
@@ -70,11 +80,13 @@ function stopTime(){
         var answer =  triviaQuestion[questions].answer;
         if(answer === userpick){
             score++;
-            newQuestion();
+            splash('win');
+            setTimeout(newQuestion , 3*1000);
           console.log('win');
         }else{
             wrong++;
-            newQuestion();
+            splash('wrong');
+            setTimeout(newQuestion , 3*1000);
             console.log('wrong');
         }
 
@@ -85,10 +97,48 @@ function stopTime(){
         var result = `
         <p class= r>You got ${score} questions correct</p>
         <p class= r>You got ${wrong} questions incorrect</p>
-        
+        <button class="btn btn-lg btn-success" id="reset">Reset Game</button>
         `;
         $('#game').html(result)
     }
 
-questionUp();
-choiceUp();
+        function splash(status){
+                $("#time").empty();
+                var correctChoice= triviaQuestion[questions].answer;
+
+                if(status=== 'win'){
+                    $('#game').html(`
+                    <p class= s>Good Job</p>
+                    <img src='${splashImage(correct)}'/>
+                    `)
+
+                }else{
+                    $('#game').html(`
+                    <p class= s>Incorrect</p>
+                    <p class= s>The Correct answer is : <strong>${correctChoice}</strong></p>
+                    <img src='${splashImage(incorrect)}'/>
+                    `)
+                }
+        }
+
+        function splashImage(images){
+            var random = Math.floor(Math.random() * images.length);
+            var randomImage = images[random];
+            return randomImage;
+        }
+        $(document).on('click','#reset', function(){
+             timer = 30;
+             interValId = null;
+             questions = 0;
+             score =0; 
+             wrong = 0;
+             questionUp();
+             choiceUp();
+        });
+
+$('#start').click(function(){
+    $('#start').remove();
+    $('#time').html(timer);
+    questionUp();
+    choiceUp();
+});;
