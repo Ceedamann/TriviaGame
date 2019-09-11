@@ -31,7 +31,7 @@ function questionUp(){
 function choiceUp(){
     for (var i = 0; i < 4; i++) {
         var choice = triviaQuestion[questions].choices;
-        $('#choices').append('<p class=c>'+choice[i]+'</p>'+'<br>') 
+        $('#choices').append(`<p class=c data-answer= '${choice[i]}'>${choice[i]}</p>`) 
         
     }
 };
