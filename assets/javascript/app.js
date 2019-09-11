@@ -1,7 +1,8 @@
 // Golbal variables//
-var timer = 5;
+var timer = 3;
 var interValId;
 var questions = 0;
+var choices= 0;
 var score =0; 
 var wrong = 0;
 
@@ -20,7 +21,7 @@ var triviaQuestion = [
 
 function questionUp(){
     var question = triviaQuestion[questions].question;
-    timer = 5;
+    timer = 3;
     interValId = setInterval(countDown, 1000);
         $("#time").html("Timer: " +timer);
     $("#game").html("<h2>" + question + "</h2>");
@@ -29,8 +30,8 @@ function questionUp(){
 
 function choiceUp(){
     for (var i = 0; i < 4; i++) {
-        var choice = triviaQuestion[questions].choices
-        $('#choices').html('<p>'+choice[i]+'</p>'+'<br>') 
+        var choice = triviaQuestion[questions].choices;
+        $('#choices').append('<p class=c>'+choice[i]+'</p>'+'<br>') 
         
     }
 };
@@ -41,6 +42,8 @@ function newQuestion(){
 
     }else {
         questions++;
+        choices++;
+        $('#choices').empty();
         questionUp();
         choiceUp();
     }
@@ -60,6 +63,9 @@ function stopTime(){
     wrong++;
     newQuestion();
 };
+
+
+// document.onkeyup('click')
 
 questionUp();
 choiceUp();
