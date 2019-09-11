@@ -2,7 +2,6 @@
 var timer = 3;
 var interValId;
 var questions = 0;
-var choices= 0;
 var score =0; 
 var wrong = 0;
 
@@ -31,7 +30,7 @@ function questionUp(){
 function choiceUp(){
     for (var i = 0; i < 4; i++) {
         var choice = triviaQuestion[questions].choices;
-        $('#choices').append(`<p class=c data-answer= '${choice[i]}'>${choice[i]}</p>`) 
+        $('#game').append(`<p class=c data-answer= '${choice[i]}'>${choice[i]}</p>`) 
         
     }
 };
@@ -39,11 +38,11 @@ function choiceUp(){
 function newQuestion(){
     var over = (triviaQuestion.length-1) ===questions;
     if (over){
-
+        results();
     }else {
         questions++;
-        choices++;
-        $('#choices').empty();
+        // choices++;
+        $('#game').empty();
         questionUp();
         choiceUp();
     }
@@ -65,7 +64,31 @@ function stopTime(){
 };
 
 
-// document.onkeyup('click')
+    $(document).on('click', '.c',function(){
+        clearInterval(interValId);
+        var userpick = $(this).attr('data-answer');
+        var answer =  triviaQuestion[questions].answer;
+        if(answer === userpick){
+            score++;
+            newQuestion();
+          console.log('win');
+        }else{
+            wrong++;
+            newQuestion();
+            console.log('wrong');
+        }
+
+    } );
+
+    function results(){
+        
+        var result = `
+        <p class= r>You got ${score} questions correct</p>
+        <p class= r>You got ${wrong} questions incorrect</p>
+        
+        `;
+        $('#game').html(result)
+    }
 
 questionUp();
 choiceUp();
