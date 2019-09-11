@@ -18,6 +18,20 @@ var triviaQuestion = [
     },
 ];
 
+function questionUp(){
+    var question = triviaQuestion[questions].question;
+   
+        $("#time").html("Timer: " +timer);
+    $("#game").html("<h2>" + question + "</h2>");
 
+}       
 
-$("#time").html("Timer: " +timer);
+function choiceUp(){
+    for (var i = 0; i < 4; i++) {
+        var choice = triviaQuestion[questions].choices
+        $('#choices').append('<p>'+choice[i]+'</p>'+'<br>') 
+        
+    }
+}
+questionUp();
+choiceUp()
