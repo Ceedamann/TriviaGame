@@ -1,5 +1,19 @@
 p{
-    border: 1px solid black;
+    border: 1px solid red;
     padding: 5px;
+    font-size: 24px;
     
+}
+body{
+    background-color: black;
+    color: azure;
+    font-family: 'Architects Daughter', cursive;
+}
+.c,.r,.s{
+    height: 80px;
+    width: 300px;
+    position: relative;
+    border-bottom: 2px solid #f51c40;
+    background: black;
+
 }

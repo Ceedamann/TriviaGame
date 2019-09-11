@@ -16,14 +16,37 @@ var triviaQuestion = [
         choices: ["Shotgun", "Sword", "Crossbow","Bat"],
         answer: "Crossbow",
     },
+    {
+        question: "What is the name of Lori's baby, born during season 3?",
+        choices: ["Jessie", "Jenny", "Judith","Judy"],
+        answer: "Judith",
+    },
+    {
+        question: "What type of animal is Shiva, King Ezekiel's ferocious companion?",
+        choices: ["Bear", "Wolf", "Puma","Tiger"],
+        answer: "Tiger",
+    },
+    {
+        question: "How did Carl lose his eye?",
+        choices: ["It became diseased and fell out", "A walker tore it out", "He was accidentally stabbed in the eye","He was shot through the eye"],
+        answer: "He was shot through the eye",
+    },
+    {
+        question: "What does Negan call his trusty baseball bat?",
+        choices: ["Lucille", "Laura", "Lacey","Linda"],
+        answer: "Lucille",
+    },
 ];
 
 var correct=[
-    './assets/images/yup.gif'
+    './assets/images/yup.gif',
+    './assets/images/yup1.gif',
+    './assets/images/yup2.gif',
 ];
 var incorrect=[
     './assets/images/no.gif',
-    './assets/images/wrong.gif'
+    './assets/images/wrong.gif',
+    './assets/images/wrong1.gif',
 ];
 
 function questionUp(){
