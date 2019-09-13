@@ -47,6 +47,7 @@ var incorrect=[
     './assets/images/no.gif',
     './assets/images/wrong.gif',
     './assets/images/wrong1.gif',
+    './assets/images/nope.gif',
 ];
 
 function questionUp(){
